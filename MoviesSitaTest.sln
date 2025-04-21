@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesSita.API", "MoviesSitaTest\MoviesSita.API.csproj", "{DA6B0B51-2CD7-42C1-BBCB-17E3EA622FA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesSita.Domain", "MoviesSita.Domain\MoviesSita.Domain.csproj", "{A32638CB-F2FD-4166-8225-3D454F0928F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesSita.Application", "MoviesSita.Application\MoviesSita.Application.csproj", "{B35D019A-5244-49B3-A60D-BA4771614FD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesSita.Infra", "MoviesSita.Infra\MoviesSita.Infra.csproj", "{B6193BCA-E25C-4792-AF05-1078546277B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA6B0B51-2CD7-42C1-BBCB-17E3EA622FA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA6B0B51-2CD7-42C1-BBCB-17E3EA622FA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA6B0B51-2CD7-42C1-BBCB-17E3EA622FA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA6B0B51-2CD7-42C1-BBCB-17E3EA622FA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A32638CB-F2FD-4166-8225-3D454F0928F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A32638CB-F2FD-4166-8225-3D454F0928F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A32638CB-F2FD-4166-8225-3D454F0928F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A32638CB-F2FD-4166-8225-3D454F0928F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B35D019A-5244-49B3-A60D-BA4771614FD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B35D019A-5244-49B3-A60D-BA4771614FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B35D019A-5244-49B3-A60D-BA4771614FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B35D019A-5244-49B3-A60D-BA4771614FD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6193BCA-E25C-4792-AF05-1078546277B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6193BCA-E25C-4792-AF05-1078546277B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6193BCA-E25C-4792-AF05-1078546277B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6193BCA-E25C-4792-AF05-1078546277B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90441DDC-36A3-4332-9AAB-72D7C617288D}
+	EndGlobalSection
+EndGlobal
