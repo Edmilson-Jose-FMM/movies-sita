@@ -20,7 +20,7 @@ namespace MoviesSita.API.Controllers
             var filme = await _moviesService.GetMovieById(id);
             if (filme == null)
             {
-                return NotFound();
+                return NotFound($"Movie not found by Id {id}");
             }
             return filme;
         }
@@ -28,7 +28,7 @@ namespace MoviesSita.API.Controllers
         [HttpGet("GetPaginatedWithFilters")]
         public async Task<ActionResult<IEnumerable<Movies>>> MoviesPaginatedWithFilters(string genrer, string status, bool adult, int page, int perPage)
         {
-            var genresList = await _moviesService.GetMoviesByGenresPaginated(genrer, status, adult, page, perPage);
+            var genresList = await _moviesService.GetMoviesPaginatedWithFilters(genrer, status, adult, page, perPage);
             return genresList;
         }
 

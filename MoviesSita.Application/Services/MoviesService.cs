@@ -26,11 +26,11 @@ namespace MoviesSita.Application.Services
 
             if (movie == null)
             {
-                throw new Exception("Movie not found");
+                return null;
             }
             return movie;
         }
-        public async Task<ActionResult<IEnumerable<Movies>>> GetMoviesByPaginatedPaginated(string genrer, string status, bool adult, int page, int perPage)
+        public async Task<ActionResult<IEnumerable<Movies>>> GetMoviesPaginatedWithFilters(string genrer, string status, bool adult, int page, int perPage)
         {
             var result = _moviesDbContext.movies.AsQueryable();
             if (genrer != null)
