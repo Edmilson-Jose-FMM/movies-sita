@@ -10,6 +10,6 @@ namespace MoviesSita.Domain.Entities
     {
         public int Page { get; set; }
         public int PerPage { get; set; }
-        public IEnumerable<Movies> Movies { get; set; }
+        public List<Movies> Movies { get; set; } = new List<Movies>();
     }
 }

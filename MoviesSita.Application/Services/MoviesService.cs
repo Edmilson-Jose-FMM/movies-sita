@@ -65,7 +65,7 @@ namespace MoviesSita.Application.Services
             
             result = result.Skip((page - 1) * perPage).Take(perPage);
             
-            pagedItens.Movies = result.ToList();
+            pagedItens.Movies = await result.AsNoTracking().ToListAsync();
             pagedItens.Page = page;
             pagedItens.PerPage = perPage;
 
