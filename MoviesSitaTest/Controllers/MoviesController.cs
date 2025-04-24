@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MoviesSita.Application.IServices;
 using MoviesSita.Domain.Entities;
+using System.Net;
 
 namespace MoviesSita.API.Controllers
 {
@@ -16,13 +17,16 @@ namespace MoviesSita.API.Controllers
         [HttpGet("GetById")]
         public async Task<ActionResult<Movies>> MoviesGet(int id)
         {
+            try
+            {
+                var filme = await _moviesService.GetMovieById(id);
+                return filme;
 
-            var filme = await _moviesService.GetMovieById(id);
-            if (filme == null)
+            }
+            catch (Exception err)
             {
                 return NotFound($"Movie not found by Id {id}");
-            }
-            return filme;
+            }            
         }
 
         [HttpGet("GetPaginatedWithFilters")]
@@ -33,28 +37,40 @@ namespace MoviesSita.API.Controllers
         }
 
         [HttpDelete]
-        public async Task<bool> DeleteMoviesById(int id)
+        public async Task<ActionResult> DeleteMoviesById(int id)
         {
             try
             {
-                return await _moviesService.DeleteMovieById(id);
+                return Ok(await _moviesService.DeleteMovieById(id));
             }
             catch (Exception err)
             {
-                throw new Exception(err.Message);
+                return NotFound(err.Message);
             }
         }
         [HttpPost]
-        public async Task<bool> InsertMovie(Movies movie)
+        public async Task<ActionResult> InsertMovie(Movies movie)
         {
-            return await _moviesService.InsertMovie(movie);
-             
+            try
+            {
+                return Ok(await _moviesService.InsertMovie(movie));
+            }
+            catch(Exception err)
+            {
+                return BadRequest(err.Message);
+            }
         }
 
         [HttpPut]
-        public async Task<bool> UpdateMovie(int id, Movies movie)
+        public async Task<ActionResult> UpdateMovie(int id, Movies movie)
         {
-            return await _moviesService.UpdateMovie(id, movie);
+            try {
+                return Ok(await _moviesService.UpdateMovie(id, movie));
+            }
+            catch (Exception err)
+            {
+               return BadRequest(err.Message);
+            }
         }
     }
 }
