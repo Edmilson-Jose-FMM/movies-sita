@@ -26,9 +26,9 @@ namespace MoviesSita.API.Controllers
         }
 
         [HttpGet("GetPaginatedWithFilters")]
-        public async Task<ActionResult<IEnumerable<Movies>>> MoviesPaginatedWithFilters(string genrer, string status, bool adult, int page, int perPage)
+        public async Task<PagedItens> MoviesPaginatedWithFilters(string? genrer, string? status, bool adult, int page, int perPage, string? title)
         {
-            var genresList = await _moviesService.GetMoviesPaginatedWithFilters(genrer, status, adult, page, perPage);
+            var genresList = await _moviesService.GetMoviesPaginatedWithFilters(genrer, status, adult, page, perPage, title);
             return genresList;
         }
 

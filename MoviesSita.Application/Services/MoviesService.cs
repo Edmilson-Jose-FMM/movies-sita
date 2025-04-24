@@ -30,30 +30,47 @@ namespace MoviesSita.Application.Services
             }
             return movie;
         }
-        public async Task<ActionResult<IEnumerable<Movies>>> GetMoviesPaginatedWithFilters(string genrer, string status, bool adult, int page, int perPage)
+        public async Task<PagedItens> GetMoviesPaginatedWithFilters(string? genrer, string? status, bool adult, int page, int perPage,string? title)
         {
+            PagedItens pagedItens = new PagedItens(); 
             var result = _moviesDbContext.movies.AsQueryable();
+
+            if (status != null)
+            {
+                result = result.Where(p => EF.Functions.ILike(p.status, $"{status}%") ||
+                                           p.status == status);
+            }
             if (genrer != null)
             {
-                result = result.Where(p => p.genres == genrer);
+                result = result.Where(p=>
+                                           EF.Functions.ILike(p.genres, $"%{genrer},%") || 
+                                           EF.Functions.ILike(p.genres, $"%{genrer}") ||  
+                                           EF.Functions.ILike(p.genres, $"{genrer},%") ||  
+                                           p.genres == genrer);
             }
-            if(adult!= null)
+            if (adult != null)
             {
                 result = result.Where(p => p.adult == adult);
             }
-            if(status != null)
+            if (status != null)
             {
-                result = result.Where(p => p.status == status);
+                result = result.Where(p => EF.Functions.ILike(p.status, $"{status}%") ||
+                                           p.status == status);
             }
-            if (page == null && perPage == null)
+            if (page == 0 && perPage == 0)
             {
                 page = 1;
                 perPage = 10;
             }
-            result = result.Skip((page - 1) * perPage).Take(perPage);
-
-            return await result.AsNoTracking().ToListAsync();
             
+            result = result.Skip((page - 1) * perPage).Take(perPage);
+            
+            pagedItens.Movies = result.ToList();
+            pagedItens.Page = page;
+            pagedItens.PerPage = perPage;
+
+            return pagedItens;
+
         }
 
         public async Task<bool> DeleteMovieById(int id)
@@ -70,10 +87,10 @@ namespace MoviesSita.Application.Services
         }
         public async Task<bool> InsertMovie(Movies movie)
         {
-       
+
             if (movie.title == null)
                 throw new Exception("Title fieldcan not be empty");
-
+            movie.id = _moviesDbContext.movies.Max(f => f.id)+1;
             await _moviesDbContext.movies.AddAsync(movie);
             _moviesDbContext.SaveChanges();
 

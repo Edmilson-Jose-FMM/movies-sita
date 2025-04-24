@@ -11,7 +11,7 @@ namespace MoviesSita.Application.IServices
     public interface IMoviesService
     {
         Task<ActionResult<Movies>> GetMovieById(int id);
-        Task<ActionResult<IEnumerable<Movies>>> GetMoviesPaginatedWithFilters(string genrer, string status, bool adult, int page, int perPage);
+        Task<PagedItens> GetMoviesPaginatedWithFilters(string? genrer, string? status, bool adult, int page, int perPage, string? title);
         Task<bool> DeleteMovieById(int id);
         Task<bool> UpdateMovie(int id, Movies movie);
         Task<bool> InsertMovie(Movies movie);
