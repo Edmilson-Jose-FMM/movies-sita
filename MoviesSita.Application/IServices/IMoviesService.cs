@@ -10,10 +10,10 @@ namespace MoviesSita.Application.IServices
 { 
     public interface IMoviesService
     {
-        Task<ActionResult<Movies>> GetMovieById(int id);
+        Task<ActionResult<Movies>> GetMovieById(long id);
         Task<PagedItens> GetMoviesPaginatedWithFilters(string? genrer, string? status, bool adult, int page, int perPage, string? title);
-        Task<bool> DeleteMovieById(int id);
-        Task<bool> UpdateMovie(int id, Movies movie);
-        Task<bool> InsertMovie(Movies movie);
+        Task<bool> DeleteMovieById(long id);
+        Task<bool> UpdateMovie(long id, Movies movie);
+        Task<string> InsertMovie(Movies movie);
     }
 }

@@ -20,14 +20,13 @@ namespace MoviesSita.Application.Services
             _moviesDbContext = moviesDbContext;
         }
 
-        public async Task<ActionResult<Movies>> GetMovieById(int id)
+        public async Task<ActionResult<Movies>> GetMovieById(long id)
         {
             var movie = await _moviesDbContext.movies.FindAsync(id);
 
             if (movie == null)
-            {
-                return null;
-            }
+                throw new Exception($"Movie not found by ID: {id}");
+            
             return movie;
         }
         public async Task<PagedItens> GetMoviesPaginatedWithFilters(string? genrer, string? status, bool adult, int page, int perPage,string? title)
@@ -52,10 +51,10 @@ namespace MoviesSita.Application.Services
             {
                 result = result.Where(p => p.adult == adult);
             }
-            if (status != null)
+            if (title != null)
             {
-                result = result.Where(p => EF.Functions.ILike(p.status, $"{status}%") ||
-                                           p.status == status);
+                result = result.Where(p => EF.Functions.ILike(p.title, $"{title}%") ||
+                                           p.title == title);
             }
             if (page == 0 && perPage == 0)
             {
@@ -73,31 +72,30 @@ namespace MoviesSita.Application.Services
 
         }
 
-        public async Task<bool> DeleteMovieById(int id)
+        public async Task<bool> DeleteMovieById(long id)
         {
             var movie = await _moviesDbContext.movies.FindAsync(id);
 
             if (movie == null)
-                throw new Exception("Movie not found");
-
+                  throw new Exception("Movie not found to be deleted");
             _moviesDbContext.movies.Remove(movie);
             await _moviesDbContext.SaveChangesAsync();
 
             return true;
         }
-        public async Task<bool> InsertMovie(Movies movie)
+        public async Task<string> InsertMovie(Movies movie)
         {
 
             if (movie.title == null)
-                throw new Exception("Title fieldcan not be empty");
+                throw new Exception("Title field cannot be empty");
             movie.id = _moviesDbContext.movies.Max(f => f.id)+1;
             await _moviesDbContext.movies.AddAsync(movie);
             _moviesDbContext.SaveChanges();
 
-            return true;
+            return $"Movie added with ID:{movie.id}";
 
         }
-        public async Task<bool> UpdateMovie(int id, Movies movie)
+        public async Task<bool> UpdateMovie(long id, Movies movie)
         {
             try
             {
@@ -105,6 +103,8 @@ namespace MoviesSita.Application.Services
                     throw new Exception("Id field cannot be empty");
 
                 var updatedMovie = await _moviesDbContext.movies.FindAsync(id);
+                if (updatedMovie == null)
+                    throw new Exception($"Movie not found by id: {id}. Cannot by updated");
 
                 #region Updating registry
                 updatedMovie.title = movie.title;
