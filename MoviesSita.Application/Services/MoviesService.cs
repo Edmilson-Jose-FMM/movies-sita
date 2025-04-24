@@ -51,10 +51,10 @@ namespace MoviesSita.Application.Services
             {
                 result = result.Where(p => p.adult == adult);
             }
-            if (status != null)
+            if (title != null)
             {
-                result = result.Where(p => EF.Functions.ILike(p.status, $"{status}%") ||
-                                           p.status == status);
+                result = result.Where(p => EF.Functions.ILike(p.title, $"{title}%") ||
+                                           p.title == title);
             }
             if (page == 0 && perPage == 0)
             {

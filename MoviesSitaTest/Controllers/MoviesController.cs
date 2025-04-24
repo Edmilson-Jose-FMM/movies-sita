@@ -26,7 +26,8 @@ namespace MoviesSita.API.Controllers
             catch (Exception err)
             {
                 return NotFound($"Movie not found by Id {id}");
-            }            
+            }
+            
         }
 
         [HttpGet("GetPaginatedWithFilters")]
