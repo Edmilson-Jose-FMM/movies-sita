@@ -22,3 +22,13 @@ Abra no navegador:
  ```bash
  https://localhost:5020/swagger
  ```
+5. Tecnologias e padrões
+   Nesta API utilizei o .NET 8.0 entity framework, tudo feito baseado na arquitetura de projetos "Clean Architecture"
+# Vantagens da Clean Architecture
+  1. Separação de responsabilidades
+     O sistema é dividido em camadas bem definidas (Domínio, Aplicação, Infraestrutura, Apresentação) e cada camada tem uma responsabilidade única e não depende diretamente das outras.
+  2. Facilidade para manutenção e evolução
+     Como o código está bem organizado, com baixa dependência entre as camadas, fica mais fácil adicionar novas funcionalidades ou alterar comportamentos existentes.
+  3. Escalabilidade
+     Permite que o sistema cresça de forma organizada, mantendo a arquitetura consistente.   
+
