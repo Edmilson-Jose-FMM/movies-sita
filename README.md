@@ -1,7 +1,7 @@
 # 🎬 Movies SITA API
 API desenvolvida em .NET 8.0 com acesso a banco de dados PostgreSQL via Entity Framework (Database First).
 
-#🚀 Como rodar o projeto
+🚀 Como rodar o projeto
 1. Clone o repositório
  ```bash
  git clone https://github.com/Edmilson-Jose-FMM/movies-sita.git
