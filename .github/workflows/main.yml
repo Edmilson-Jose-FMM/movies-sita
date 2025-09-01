@@ -23,7 +23,7 @@ jobs:
         run: dotnet restore
 
       - name: Build do projeto
-        run: dotnet build  Release --no-restore
+        run: dotnet build --configuration Release --no-restore
 
   publish:
     runs-on: ubuntu-latest
